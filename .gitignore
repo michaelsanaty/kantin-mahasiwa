@@ -1,0 +1,52 @@
+
+# Sistem Operasi Mac
+.DS_Store
+
+# Cache & Log CI3
+application/cache/*
+!application/cache/index.html
+
+application/logs/*
+!application/logs/index.html
+
+!application/*/.htaccess
+
+# Composer
+composer.lock
+/vendor/
+
+# SQLite CI Test (kalau pakai testing)
+tests/mocks/database/ci_test.sqlite
+
+# User Guide CI3
+user_guide_src/build/*
+user_guide_src/cilexer/build/*
+user_guide_src/cilexer/dist/*
+user_guide_src/cilexer/pycilexer.egg-info/*
+
+# IDE Files
+/nbproject/
+/.idea/*
+
+# Sublime Text Cache
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+
+# Testing folders
+/tests/tests/
+/tests/results/
+
+# Tambahan untuk Keamanan & Kolaborasi QPQ
+.env
+.env.*
+*.log
+
+# 🔧 Folder hasil generate (jika ada build UI)
+build/
+dist/
+
+
+
