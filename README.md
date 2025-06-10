@@ -19,7 +19,7 @@ Aplikasi web berbasis *CodeIgniter 3* untuk mengelola data makanan dan transaksi
 | Nama Anggota | Tugas                            | Branch              |
 |--------------|----------------------------------|---------------------|
 | michael      | Leader, integrasi & pengawasan   | main              |
-| mario        | CRUD makanan & database          | feature/crud      |
+| blacki       | CRUD makanan & database          | feature/crud      |
 | melkior      | Desain antarmuka (UI)            | feature/ui        |
 | pedro        | Dokumentasi & panduan sistem     | feature/docs      |
 
