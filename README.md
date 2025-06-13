@@ -66,23 +66,12 @@ application/
 ⏳ Validasi form & feedback (misalnya jika input kosong) belum dipasang.
 ⏳ Belum ada preview gambar makanan di kartu — ini bisa ditambahkan nanti.
 
-
-
----
-
 Kalau kamu setuju, besok kita bisa lanjut ke:
-
 1. Menambahkan preview gambar di setiap kartu makanan.
-
-
 2. Menyempurnakan form create & edit agar desainnya lebih rapi.
-
-
 3. Menambahkan validasi input dan alert feedback lebih jelas.
-
-
 4. Sinkronisasi ke GitHub branch feature/crud jika sudah siap.
 
 
 
-Mau aku simpan checklist ini juga untuk dilanjutkan nanti?
+
