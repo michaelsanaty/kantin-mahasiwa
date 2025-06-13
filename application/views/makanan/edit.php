@@ -1,18 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit Makanan</title>
-</head>
-<body>
-    <h2>Edit Makanan</h2>
-    <form action="<?= site_url('makanan/update/'.$makanan->id) ?>" method="post">
-        <label>Nama:</label><br>
-        <input type="text" name="nama" value="<?= $makanan->nama ?>" required><br>
-        <label>Harga:</label><br>
-        <input type="number" name="harga" value="<?= $makanan->harga ?>" required><br>
-        <label>Stok:</label><br>
-        <input type="number" name="stok" value="<?= $makanan->stok ?>" required><br><br>
-        <input type="submit" value="Update">
-    </form>
-</body>
-</html>
+<?php $this->load->view('layout/header'); ?>
+
+<div class="container py-5" style="background-color: #f8f3ef;">
+    <h2 class="text-center mb-5" style="font-weight: bold; color: #333;">HIDANGAN UTAMA KANTIN MAHASISWA</h2>
+
+    <?php if ($this->session->flashdata('success')): ?>
+        <div class="alert alert-success text-center"><?= $this->session->flashdata('success'); ?></div>
+    <?php endif; ?>
+
+    <div class="text-end mb-4">
+        <a href="<?= site_url('makanan/create') ?>" class="btn btn-success">+ Tambah Makanan</a>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <?php if (!empty($makanan)): ?>
+            <?php foreach ($makanan as $mkn): ?>
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <?php if (!empty($mkn->gambar)): ?>
+                            <img src="<?= base_url('uploads/' . $mkn->gambar) ?>" class="card-img-top" style="height: 200px; object-fit: cover;" alt="<?= $mkn->nama ?>">
+                        <?php else: ?>
+                            <img src="https://via.placeholder.com/400x200?text=No+Image" class="card-img-top" alt="No Image">
+                        <?php endif; ?>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold"><?= $mkn->nama ?></h5>
+                            <p class="card-text small text-muted">Rp<?= number_format($mkn->harga, 0, ',', '.') ?></p>
+                            <p class="card-text text-truncate" title="<?= $mkn->deskripsi ?>"><?= $mkn->deskripsi ?></p>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
+                            <a href="<?= site_url('makanan/edit/'.$mkn->id) ?>" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="<?= site_url('makanan/delete/'.$mkn->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau hapus?')">Hapus</a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="col-12">
+                <div class="alert alert-info text-center">Belum ada data makanan.</div>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<?php $this->load->view('layout/footer'); ?>
