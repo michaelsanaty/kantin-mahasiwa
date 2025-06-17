@@ -40,18 +40,26 @@ Project ini dikembangkan secara kolaboratif oleh 4 anggota tim sebagai bagian da
 
 kantin-mahasiswa/
 ├── application/
-│   ├── controllers/        # Makanan.php
-│   ├── models/             # Makanan\_model.php
+│   ├── config/
+│   ├── controllers/
+│   │   └── Makanan.php              # Controller utama untuk CRUD makanan
+│   ├── models/
+│   │   └── Makanan_model.php       # Model untuk akses database makanan
 │   ├── views/
-│   │   ├── layout/         # header.php, footer.php
-│   │   └── makanan/        # index.php, tambah.php, edit.php
-├── uploads/                # Gambar makanan
+│   │   ├── layout/
+│   │   │   ├── header.php          # Template header
+│   │   │   └── footer.php          # Template footer
+│   │   └── makanan/
+│   │       ├── index.php           # Tampilan galeri daftar makanan
+│   │       ├── tambah.php          # Form tambah makanan
+│   │       └── edit.php            # Form edit makanan
+├── assets/                         # Folder opsional untuk CSS, JS, gambar tambahan
+├── uploads/                        # Folder penyimpanan gambar makanan yang di-upload
+├── .gitignore
 ├── README.md
-└── ...
+└── index.php                       # Entry point aplikasi
 
 ```
-
----
 
 ## 📝 Fitur Utama
 
