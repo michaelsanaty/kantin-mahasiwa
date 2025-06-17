@@ -5,59 +5,57 @@ Oke! Berikut versi `README.md` yang sudah **diperbarui dan disesuaikan** berdasa
 ```markdown
 # 🍽 Kantin Mahasiswa
 
-Aplikasi web berbasis **CodeIgniter 3** untuk mengelola data makanan dan transaksi di kantin kampus.  
-Project ini dikembangkan secara kolaboratif oleh 4 anggota tim sebagai bagian dari tugas proyek kuliah.
+Aplikasi web berbasis CodeIgniter 3 untuk mengelola data makanan dan transaksi di kantin kampus.  
+Project ini dikerjakan secara kolaboratif oleh 4 anggota tim sebagai tugas proyek kuliah.
 
-🔗 **Link Aplikasi (lokal)**  
-[http://localhost:8080/kantin-mahasiswa/index.php/makanan]
+🔗 Link: [http://localhost:8080/kantin-mahasiswa/index.php/makanan](http://localhost:8080/kantin-mahasiswa/index.php/makanan)
 
 ---
 
 ## 🚀 Teknologi yang Digunakan
 
-- ⚙️ CodeIgniter 3
-- 🐘 PHP 7.x
-- 🛢 MySQL (XAMPP)
-- 🎨 Bootstrap (antarmuka)
-- 🧪 Git & GitHub (kolaborasi)
+- CodeIgniter 3
+- PHP 7.x
+- MySQL (XAMPP)
+- Bootstrap (untuk antarmuka)
+- Git & GitHub (untuk kolaborasi)
 
 ---
 
-## 👥 Tim Pengembang & Struktur Branch
+## 👥 Tim & Branch
 
-| Nama Anggota | Tugas                              | Branch            |
-|--------------|------------------------------------|-------------------|
-| **michael    | Leader, integrasi & pengawasan     | `main`            |
-| **yerus      | CRUD makanan & database            | `feature/crud`    |
-| **melkior    | Desain antarmuka (UI)              | `feature/ui`      |
-| **pedro      | Dokumentasi & panduan sistem       | `feature/docs`    |
+| Nama Anggota | Tugas                         | Branch         |
+|--------------|-------------------------------|----------------|
+| michael      | Leader, integrasi & pengawasan | `main`         |
+| blacki       | CRUD makanan & database        | `feature/crud` |
+| melkior      | Desain antarmuka (UI)          | `feature/ui`   |
+| pedro        | Dokumentasi & panduan sistem   | `feature/docs` |
 
 ---
 
-## 📁 Struktur Folder
+## 📁 Struktur Folder Proyek
 
-```
-
+```bash
 kantin-mahasiswa/
 ├── application/
 │   ├── config/
 │   ├── controllers/
-│   │   └── Makanan.php              # Controller utama untuk CRUD makanan
+│   │   └── Makanan.php
 │   ├── models/
-│   │   └── Makanan_model.php       # Model untuk akses database makanan
+│   │   └── Makanan_model.php
 │   ├── views/
 │   │   ├── layout/
-│   │   │   ├── header.php          # Template header
-│   │   │   └── footer.php          # Template footer
+│   │   │   ├── header.php
+│   │   │   └── footer.php
 │   │   └── makanan/
-│   │       ├── index.php           # Tampilan galeri daftar makanan
-│   │       ├── tambah.php          # Form tambah makanan
-│   │       └── edit.php            # Form edit makanan
-├── assets/                         # Folder opsional untuk CSS, JS, gambar tambahan
-├── uploads/                        # Folder penyimpanan gambar makanan yang di-upload
+│   │       ├── index.php
+│   │       ├── tambah.php
+│   │       └── edit.php
+├── assets/
+├── uploads/
 ├── .gitignore
 ├── README.md
-└── index.php                       # Entry point aplikasi
+└── index.php
 
 ```
 
