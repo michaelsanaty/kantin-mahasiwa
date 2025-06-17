@@ -1,65 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Kantin Mahasiswa - Daftar Makanan</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f7f7f7;
-        }
-        .card-title {
-            font-weight: bold;
-        }
-        .card {
-            border: none;
-            border-radius: 16px;
-        }
-        .btn-order {
-            background-color: #bfa77f;
-            border: none;
-        }
-        .btn-order:hover {
-            background-color: #a8936f;
-        }
-    </style>
-</head>
-<body>
-    <div class="container py-5">
-        <h2 class="text-center mb-4">Hidangan Kantin Mahasiswa</h2>
+<div class="container-menu">
+    <h2 class="menu-title">Hidangan Kantin Mahasiswa</h2>
 
-        <div class="text-end mb-3">
-            <a href="<?= site_url('makanan/create') ?>" class="btn btn-success">+ Tambah Makanan</a>
-        </div>
+    <!-- Tombol Tambah Makanan -->
+    <div class="text-end mb-4">
+        <a href="<?= site_url('makanan/create') ?>" class="btn btn-success shadow-sm px-4">+ Tambah Makanan</a>
+    </div>
 
-        <div class="row">
-            <?php if (empty($makanan)) : ?>
-                <div class="col-12">
-                    <div class="alert alert-warning text-center">Belum ada data makanan.</div>
-                </div>
-            <?php else : ?>
-                <?php foreach ($makanan as $m) : ?>
-                    <div class="col-md-4 mb-4">
-                        <div class="card shadow-sm h-100">
-                            <div class="card-body d-flex flex-column justify-content-between">
-                                <div>
-                                    <h5 class="card-title"><?= htmlspecialchars($m->nama) ?></h5>
-                                    <p class="card-text"><?= nl2br(htmlspecialchars($m->deskripsi)) ?></p>
-                                    <h6 class="text-muted">Rp <?= number_format($m->harga, 0, ',', '.') ?></h6>
-                                </div>
-                                <div class="mt-3 d-flex justify-content-between">
-                                    <a href="<?= site_url('makanan/edit/'.$m->id) ?>" class="btn btn-sm btn-primary">Edit</a>
-                                    <a href="<?= site_url('makanan/delete/'.$m->id) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</a>
-                                    <a href="#" class="btn btn-sm btn-order">Order</a>
-                                </div>
+    <!-- Galeri Makanan -->
+    <div class="menu-grid">
+        <?php if (empty($makanan)) : ?>
+            <div class="col-12">
+                <div class="alert alert-warning text-center shadow-sm">Belum ada data makanan.</div>
+            </div>
+        <?php else : ?>
+            <?php foreach ($makanan as $m) : ?>
+                <div class="menu-card">
+                    <!-- Gambar Makanan -->
+                    <img src="<?= base_url('uploads/' . $m->gambar) ?>" alt="<?= htmlspecialchars($m->nama_makanan) ?>">
+
+                    <div class="p-3 d-flex flex-column flex-grow-1">
+                        <!-- Nama & Deskripsi -->
+                        <h3><?= htmlspecialchars($m->nama_makanan) ?></h3>
+                        <p><?= nl2br(htmlspecialchars($m->deskripsi)) ?></p>
+
+                        <!-- Harga dan Tombol CRUD -->
+                        <div class="price-order mt-auto">
+                            <span class="price">Rp <?= number_format($m->harga, 0, ',', '.') ?></span>
+
+                            <div class="d-flex justify-content-between mt-2">
+                                <a href="<?= site_url('makanan/edit/' . $m->id) ?>" class="btn btn-sm btn-outline-primary">Edit</a>
+                                <a href="<?= site_url('makanan/delete/' . $m->id) ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Hapus makanan ini?')">Hapus</a>
+                                <a href="<?= site_url('makanan/order/' . $m->id) ?>" class="btn btn-sm btn-outline-success">Order</a>
                             </div>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</div>
