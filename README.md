@@ -35,14 +35,14 @@ Project ini dikerjakan secara kolaboratif oleh 4 anggota tim sebagai tugas proye
 
 ## 📁 Struktur Folder Proyek
 
-```bash
 kantin-mahasiswa/
 ├── application/
 │   ├── config/
 │   ├── controllers/
 │   │   └── Makanan.php
 │   ├── models/
-│   │   └── Makanan_model.php
+│   │   ├── Makanan_model.php
+│   │   └── Order_model.php                # ✅ Model untuk manajemen pesanan
 │   ├── views/
 │   │   ├── layout/
 │   │   │   ├── header.php
@@ -50,9 +50,16 @@ kantin-mahasiswa/
 │   │   └── makanan/
 │   │       ├── index.php
 │   │       ├── tambah.php
-│   │       └── edit.php
+│   │       ├── edit.php
+│   │       ├── form.php                  # ✅ Form pemesanan (admin)
+│   │       ├── pembayaran.php            # ✅ Pilih metode & lakukan pembayaran
+│   │       └── selesai.php               # ✅ Konfirmasi pembayaran sukses
 ├── assets/
-├── uploads/
+│   ├── css/
+│   │   └── makanan.css                   # ✅ Style kustom modern
+│   └── img/
+│       └── qris.png                      # ✅ Gambar QR untuk metode QRIS
+├── uploads/                              # ✅ Folder upload gambar makanan
 ├── .gitignore
 ├── README.md
 └── index.php
