@@ -6,12 +6,11 @@ class Makanan extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Makanan_model');
+        $this->load->model(['Makanan_model', 'Order_model']);
         $this->load->helper(['url', 'form']);
         $this->load->library(['session', 'upload']);
     }
 
-    // ✅ Halaman daftar makanan
     public function index()
     {
         $data['title'] = 'Daftar Makanan';
@@ -22,7 +21,6 @@ class Makanan extends CI_Controller {
         $this->load->view('layout/footer');
     }
 
-    // ✅ Form tambah makanan
     public function create()
     {
         $data['title'] = 'Tambah Makanan';
@@ -32,7 +30,6 @@ class Makanan extends CI_Controller {
         $this->load->view('layout/footer');
     }
 
-    // ✅ Proses simpan makanan baru
     public function store()
     {
         $nama       = $this->input->post('nama_makanan');
@@ -40,7 +37,6 @@ class Makanan extends CI_Controller {
         $harga      = $this->input->post('harga');
         $gambar     = '';
 
-        // ✅ Upload Gambar
         if ($_FILES['gambar']['name']) {
             $config['upload_path']   = './uploads/';
             $config['allowed_types'] = 'jpg|jpeg|png|gif';
@@ -70,13 +66,12 @@ class Makanan extends CI_Controller {
         redirect('makanan');
     }
 
-    // ✅ Form edit
     public function edit($id)
     {
         $makanan = $this->Makanan_model->get_by_id($id);
 
         if (!$makanan) {
-            show_404(); // tampilkan 404 jika data tidak ditemukan
+            show_404();
         }
 
         $data['title'] = 'Edit Makanan';
@@ -87,7 +82,6 @@ class Makanan extends CI_Controller {
         $this->load->view('layout/footer');
     }
 
-    // ✅ Proses update data
     public function update($id)
     {
         $nama       = $this->input->post('nama_makanan');
@@ -109,7 +103,6 @@ class Makanan extends CI_Controller {
                 return;
             }
 
-            // Hapus gambar lama jika ada
             if ($gambar && file_exists('./uploads/' . $gambar)) {
                 unlink('./uploads/' . $gambar);
             }
@@ -129,7 +122,6 @@ class Makanan extends CI_Controller {
         redirect('makanan');
     }
 
-    // ✅ Hapus data
     public function delete($id)
     {
         $makanan = $this->Makanan_model->get_by_id($id);
@@ -143,10 +135,75 @@ class Makanan extends CI_Controller {
         redirect('makanan');
     }
 
-    // ✅ Placeholder untuk fitur Order
     public function order($id)
     {
-        $this->session->set_flashdata('success', 'Fitur Order masih dalam pengembangan.');
-        redirect('makanan');
+        $makanan = $this->Makanan_model->get_by_id($id);
+
+        if (!$makanan) show_404();
+
+        $data['title'] = 'Form Order';
+        $data['makanan'] = $makanan;
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('order/form', $data);
+        $this->load->view('layout/footer');
+    }
+
+    public function proses_order()
+    {
+        $makanan_id     = $this->input->post('makanan_id');
+        $nama_pemesan   = $this->input->post('nama_pemesan');
+        $jumlah         = $this->input->post('jumlah');
+        $catatan        = $this->input->post('catatan');
+        $harga          = $this->input->post('harga');
+        $total          = $jumlah * $harga;
+
+        $data = [
+            'makanan_id'    => $makanan_id,
+            'nama_pemesan'  => $nama_pemesan,
+            'jumlah'        => $jumlah,
+            'catatan'       => $catatan,
+            'total'         => $total
+        ];
+
+        $order_id = $this->Order_model->insert($data);
+        redirect('makanan/pembayaran/' . $order_id);
+    }
+
+    public function pembayaran($id)
+    {
+        $order = $this->Order_model->get_by_id($id);
+        $makanan = $this->Makanan_model->get_by_id($order->makanan_id);
+        $order->nama_makanan = $makanan->nama_makanan;
+
+        $data['title'] = 'Pembayaran';
+        $data['order'] = $order;
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('order/pembayaran', $data);
+        $this->load->view('layout/footer');
+    }
+
+    public function selesai_pembayaran()
+    {
+        $order_id = $this->input->post('order_id');
+        $metode   = $this->input->post('metode');
+
+        $this->Order_model->update($order_id, ['metode_pembayaran' => $metode]);
+        redirect('makanan/selesai/' . $order_id);
+    }
+
+    public function selesai($id)
+    {
+        $order = $this->Order_model->get_by_id($id);
+        $makanan = $this->Makanan_model->get_by_id($order->makanan_id);
+        $order->nama_makanan = $makanan->nama_makanan;
+
+        $data['title'] = 'Transaksi Berhasil';
+        $data['order'] = $order;
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('order/selesai', $data);
+        $this->load->view('layout/footer');
     }
 }

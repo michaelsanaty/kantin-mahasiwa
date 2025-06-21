@@ -1,57 +1,63 @@
 <?php $this->load->view('layout/header'); ?>
 
-<div class="container py-5" style="background-color: #f8f3ef;">
-    <h2 class="text-center mb-5 fw-bold" style="color: #333;">HIDANGAN UTAMA KANTIN MAHASISWA</h2>
+<div class="container py-5">
+  <!-- Heading + Back Button -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0 fw-semibold text-dark">Edit Menu Makanan</h2>
+    <a href="<?= site_url('makanan') ?>" class="btn btn-light border shadow-sm px-3">
+      <i class="bi bi-arrow-left me-1"></i> Kembali
+    </a>
+  </div>
 
-    <!-- ✅ Pesan sukses -->
-    <?php if ($this->session->flashdata('success')): ?>
-        <div class="alert alert-success text-center">
-            <?= $this->session->flashdata('success'); ?>
+  <!-- Form Card -->
+  <div class="card border-0 shadow rounded-4 p-4">
+    <?= form_open_multipart('makanan/update/' . $makanan->id) ?>
+      <input type="hidden" name="gambar_lama" value="<?= $makanan->gambar ?>">
+
+      <div class="mb-3">
+        <label for="nama_makanan" class="form-label fw-semibold">Nama Makanan</label>
+        <input type="text" name="nama_makanan" id="nama_makanan" required
+               class="form-control rounded-3" value="<?= htmlspecialchars($makanan->nama_makanan) ?>">
+      </div>
+
+      <div class="mb-3">
+        <label for="deskripsi" class="form-label fw-semibold">Deskripsi</label>
+        <textarea name="deskripsi" id="deskripsi" rows="4"
+                  class="form-control rounded-3"><?= htmlspecialchars($makanan->deskripsi) ?></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="harga" class="form-label fw-semibold">Harga</label>
+        <div class="input-group">
+          <span class="input-group-text">Rp</span>
+          <input type="number" name="harga" id="harga" required
+                 class="form-control rounded-end" value="<?= $makanan->harga ?>">
         </div>
-    <?php endif; ?>
+      </div>
 
-    <!-- ✅ Tombol tambah -->
-    <div class="text-end mb-4">
-        <a href="<?= site_url('makanan/create') ?>" class="btn btn-success">+ Tambah Makanan</a>
-    </div>
-
-    <!-- ✅ Galeri kartu makanan -->
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <?php if (!empty($makanan)): ?>
-            <?php foreach ($makanan as $mkn): ?>
-                <div class="col">
-                    <div class="card h-100 shadow-sm">
-
-                        <!-- ✅ Gambar makanan -->
-                        <?php if (!empty($mkn->gambar)): ?>
-                            <img src="<?= base_url('uploads/' . $mkn->gambar) ?>" class="card-img-top" style="height: 200px; object-fit: cover;" alt="<?= htmlspecialchars($mkn->nama_makanan) ?>">
-                        <?php else: ?>
-                            <img src="https://via.placeholder.com/400x200?text=No+Image" class="card-img-top" alt="No Image Available">
-                        <?php endif; ?>
-
-                        <!-- ✅ Info makanan -->
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold text-capitalize"><?= htmlspecialchars($mkn->nama_makanan) ?></h5>
-                            <p class="card-text small text-muted">Rp<?= number_format($mkn->harga, 0, ',', '.') ?></p>
-                            <p class="card-text text-truncate" title="<?= htmlspecialchars($mkn->deskripsi) ?>">
-                                <?= htmlspecialchars($mkn->deskripsi) ?>
-                            </p>
-                        </div>
-
-                        <!-- ✅ Aksi -->
-                        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
-                            <a href="<?= site_url('makanan/edit/' . $mkn->id) ?>" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="<?= site_url('makanan/delete/' . $mkn->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin mau hapus?')">Hapus</a>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Gambar Saat Ini</label><br>
+        <?php if (!empty($makanan->gambar)): ?>
+          <img src="<?= base_url('uploads/' . $makanan->gambar) ?>"
+               alt="Gambar Makanan" width="220" class="img-thumbnail rounded shadow-sm">
         <?php else: ?>
-            <div class="col-12">
-                <div class="alert alert-info text-center">Belum ada data makanan.</div>
-            </div>
+          <p class="text-muted">Tidak ada gambar</p>
         <?php endif; ?>
-    </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="gambar" class="form-label fw-semibold">Ganti Gambar (Opsional)</label>
+        <input type="file" name="gambar" id="gambar" accept="image/*"
+               class="form-control rounded-3">
+      </div>
+
+      <!-- Tombol -->
+      <div class="d-flex justify-content-end gap-2 mt-4">
+        <a href="<?= site_url('makanan') ?>" class="btn btn-outline-secondary px-4">Batal</a>
+        <button type="submit" class="btn btn-primary px-4">Simpan</button>
+      </div>
+    <?= form_close() ?>
+  </div>
 </div>
 
 <?php $this->load->view('layout/footer'); ?>
