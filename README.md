@@ -1,7 +1,3 @@
-Oke! Berikut versi `README.md` yang sudah **diperbarui dan disesuaikan** berdasarkan deskripsi kamu. Tinggal copy langsung ke file `README.md` di root folder project kamu:
-
----
-
 ```markdown
 # 🍽 Kantin Mahasiswa
 
@@ -35,6 +31,7 @@ Project ini dikerjakan secara kolaboratif oleh 4 anggota tim sebagai tugas proye
 
 ## 📁 Struktur Folder Proyek
 
+---
 kantin-mahasiswa/
 ├── application/
 │   ├── config/
