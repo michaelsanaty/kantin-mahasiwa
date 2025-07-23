@@ -97,7 +97,7 @@ digital untuk mempermudah proses pemesanan, pengelolaan data menu, dan administr
 2. Buat database `kantin_mahasiswa` dan import file `.sql` jika tersedia
 3. Atur koneksi database di `application/config/database.php`
 4. Jalankan di browser via `localhost/kantin-mahasiswa` atau sesuai folder kamu
-5. Login sebagai admin melalui halaman login
+
 
 ---
 
