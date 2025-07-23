@@ -5,6 +5,7 @@ Aplikasi web berbasis CodeIgniter 3 untuk mengelola data makanan dan transaksi d
 Project ini dikerjakan secara kolaboratif oleh 4 anggota tim sebagai tugas proyek kuliah.
 
 🔗 Link: [http://localhost:8080/kantin-mahasiswa/]
+🔗 Link: [http://localhost:8080/phpmyadmin/index.php?route=/database/sql&db=database-kantin]
 
 ---
 
