@@ -63,101 +63,48 @@ kantin-mahasiswa/
 
 ```
 
-## 📝 Fitur Utama
+# 🍽️ Aplikasi Kantin Mahasiswa
 
-- ✅ CRUD Data Makanan (Tambah, Edit, Hapus, Lihat)
-- ✅ Upload gambar makanan
-- ✅ Tampilan galeri makanan dengan desain kartu
-- 🛠 (Coming Soon) Fitur transaksi dan order
+Aplikasi berbasis web untuk membantu proses pemesanan dan pengelolaan menu makanan di kantin mahasiswa. 
+Dibangun menggunakan **CodeIgniter 3** dan didesain dengan UI yang modern, responsive, serta user-friendly.
 
 ---
 
-## ⚙️ Cara Menjalankan
+## 📌 Kesimpulan
 
-1. Clone repositori ke dalam folder `htdocs/` (XAMPP).
-2. Buat database MySQL bernama `kantin`.
-3. Import file SQL: `kantin.sql`.
-4. Atur `database.php` di `application/config/` sesuai koneksi lokal kamu.
-5. Jalankan lewat browser:  
-   `http://localhost:8080/kantin-mahasiswa/index.php/makanan`
+Proyek **Aplikasi Kantin Mahasiswa** ini dikembangkan menggunakan framework **CodeIgniter 3** sebagai solusi 
+digital untuk mempermudah proses pemesanan, pengelolaan data menu, dan administrasi transaksi di lingkungan kantin kampus.
+
+### ✅ Fitur Utama:
+- 📝 **CRUD menu makanan**, lengkap dengan fitur upload gambar
+- 🖼️ **Halaman pemesanan dengan tampilan kartu menu modern**
+- 🔄 **Pengelolaan pesanan dua layar** (user & admin) untuk memisahkan input dan review order
+- ✅ **Validasi input** dan **tampilan responsif** yang ramah pengguna
 
 ---
 
-## 💡 Catatan
+## 🧰 Teknologi yang Digunakan
+- PHP 7+
+- CodeIgniter 3
+- MySQL / MariaDB
+- HTML, CSS (AdminLTE/Tailwind)
+- JavaScript (jQuery, AJAX opsional)
 
-- Pastikan folder `uploads/` sudah ada dan dapat ditulis (`chmod 777` jika di Linux).
-- Untuk edit data, pastikan ID valid dan gambar tersedia.
-- Jika error `Call to undefined function site_url()` muncul, pastikan CodeIgniter sudah aktif dan base_url dikonfigurasi.
+---
+
+## 🏁 Cara Menjalankan
+1. Clone repositori ini
+2. Buat database `kantin_mahasiswa` dan import file `.sql` jika tersedia
+3. Atur koneksi database di `application/config/database.php`
+4. Jalankan di browser via `localhost/kantin-mahasiswa` atau sesuai folder kamu
+5. Login sebagai admin melalui halaman login
 
 ---
 
 ## 🤝 Kontribusi
-
-Kontribusi dari tim dilakukan melalui branching pada GitHub.  
-Pull request, issue, dan diskusi dilakukan sesuai tugas masing-masing anggota tim.
-
-# 📦 Progres Pengembangan Sistem Pemesanan & Pembayaran Kantin Mahasiswa
-
-## 📅 Tanggal: 21 Juni 2025
+Pull request dan issue terbuka untuk pengembangan lebih lanjut.
 
 ---
 
-## ✅ Progress Harian
-
-### 1. Fitur Menu Makanan (CRUD)
-- [x] Menampilkan daftar makanan dalam bentuk galeri kartu.
-- [x] Tambah, edit, dan hapus data makanan lengkap dengan gambar.
-- [x] Desain responsif dan modern menggunakan Bootstrap + Custom CSS.
-
-### 2. Fitur Order oleh Admin
-- [x] User hanya melihat daftar makanan.
-- [x] Admin mengisi form pemesanan secara manual.
-- [x] Total harga otomatis dihitung berdasarkan jumlah * x * harga.
-
-### 3. Halaman Pembayaran
-- [x] Desain halaman pembayaran modern (3D Card Style).
-- [x] Menampilkan data order: nama makanan, jumlah, total harga.
-- [x] Dropdown pilihan metode pembayaran:
-  - [x] Tunai
-  - [x] Transfer Bank
-  - [x] QRIS
-
-### 4. Proses Pembayaran
-- [x] Menyimpan data metode pembayaran ke database.
-- [x] Redirect ke halaman konfirmasi pembayaran setelah selesai.
-
-### 5. Halaman Selesai Pembayaran
-- [x] Menampilkan ringkasan order + informasi pembayaran.
-- [x] Menampilkan QR code jika metode pembayaran QRIS.
-- [x] Notifikasi sukses + tombol kembali ke menu.
-
----
-
-## 🛠️ Perubahan File/Struktur
-
-| File / Folder                            | Status      | Keterangan                             |
-|------------------------------------------|-------------|----------------------------------------|
-| `controllers/Makanan.php`                | ✅ Update    | Tambah fungsi `selesai_pembayaran()` dan `selesai()` |
-| `views/order/form.php`                   | ✅ Final     | Form input order oleh admin            |
-| `views/order/pembayaran.php`             | ✅ Final     | Desain 3D kekinian + metode pembayaran |
-| `views/order/selesai.php`                | ✅ Baru      | Halaman konfirmasi setelah pembayaran  |
-| `models/Order_model.php`                 | ✅ Update    | Tambah `update()` dan `get_by_id()`    |
-| `assets/img/qris.png`                    | ✅ Upload    | Gambar QRIS untuk tampilan pembayaran  |
-
----
-
-## 🔧 Database
-
-- [x] Tabel `orders` telah ditambahkan kolom:
-  - `metode_pembayaran` (VARCHAR)
-
-```sql
-ALTER TABLE orders ADD COLUMN metode_pembayaran VARCHAR(50);
-
-
----
-
-📚 _Terima kasih telah membaca README ini. Semoga project ini dapat terus dikembangkan ke tahap produksi!_
-```
-
-
+## © 2025 - Aplikasi Kantin Mahasiswa
+Proyek ini dibuat untuk keperluan pembelajaran dan pengembangan sistem informasi pemesanan kantin secara digital.
