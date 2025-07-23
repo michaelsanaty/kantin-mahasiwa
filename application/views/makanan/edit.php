@@ -1,5 +1,3 @@
-<?php $this->load->view('layout/header'); ?>
-
 <div class="container py-5">
   <!-- Heading + Back Button -->
   <div class="d-flex justify-content-between align-items-center mb-4">
@@ -60,4 +58,3 @@
   </div>
 </div>
 
-<?php $this->load->view('layout/footer'); ?>

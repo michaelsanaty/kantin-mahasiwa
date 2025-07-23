@@ -1,5 +1,3 @@
-<?php $this->load->view('layout/header'); ?>
-
 <div class="container mt-4">
     <h2>Tambah Makanan</h2>
 
@@ -27,7 +25,17 @@
             <input type="number" class="form-control" id="harga" name="harga" required>
         </div>
 
-        <!-- ✅ Upload Gambar -->
+        <!-- Jenis Makanan -->
+        <div class="mb-3">
+            <label for="jenis_makanan" class="form-label">Jenis Makanan</label>
+            <select class="form-control" id="jenis_makanan" name="jenis_makanan" required>
+                <option value="">-- Pilih Jenis --</option>
+                <option value="Makanan">Makanan</option>
+                <option value="Minuman">Minuman</option>
+            </select>
+        </div>
+
+        <!-- Upload Gambar -->
         <div class="mb-3">
             <label for="gambar" class="form-label">Gambar Makanan</label>
             <input type="file" class="form-control" id="gambar" name="gambar" accept="image/*" required>
@@ -38,5 +46,3 @@
         <a href="<?= site_url('makanan') ?>" class="btn btn-secondary">Batal</a>
     </form>
 </div>
-
-<?php $this->load->view('layout/footer'); ?>

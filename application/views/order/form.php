@@ -1,5 +1,3 @@
-<?php $this->load->view('layout/header'); ?>
-
 <style>
     .order-card {
         background: #fff;
@@ -102,5 +100,3 @@
   document.getElementById("jumlah").addEventListener("input", updateTotal);
   window.addEventListener("load", updateTotal);
 </script>
-
-<?php $this->load->view('layout/footer'); ?>

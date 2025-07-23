@@ -1,5 +1,3 @@
-<?php $this->load->view('layout/header'); ?>
-
 <style>
     .payment-card {
         background: #fff;
@@ -145,4 +143,3 @@
   });
 </script>
 
-<?php $this->load->view('layout/footer'); ?>

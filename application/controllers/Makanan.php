@@ -13,8 +13,26 @@ class Makanan extends CI_Controller {
 
     public function index()
     {
+        $jenis = $this->input->get('jenis');
         $data['title'] = 'Daftar Makanan';
-        $data['makanan'] = $this->Makanan_model->get_all();
+        $data['makanan'] = $this->Makanan_model->get_all($jenis);
+        $data['kategori'] = $this->Makanan_model->get_kategori();
+        $data['jenis_makanan'] = $this->Makanan_model->get_jenis_makanan();
+        $data['selected_jenis'] = $jenis;
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('makanan/index', $data);
+        $this->load->view('layout/footer');
+    }
+
+    public function filter_by_kategori($kategori)
+    {
+        $jenis = $this->input->get('jenis');
+        $data['title'] = 'Daftar Makanan - ' . ucfirst($kategori);
+        $data['makanan'] = $this->Makanan_model->get_by_kategori($kategori, $jenis);
+        $data['kategori'] = $this->Makanan_model->get_kategori();
+        $data['jenis_makanan'] = $this->Makanan_model->get_jenis_makanan();
+        $data['selected_jenis'] = $jenis;
 
         $this->load->view('layout/header', $data);
         $this->load->view('makanan/index', $data);
@@ -24,9 +42,11 @@ class Makanan extends CI_Controller {
     public function create()
     {
         $data['title'] = 'Tambah Makanan';
+        $data['kategori'] = $this->Makanan_model->get_kategori();
+        $data['jenis_makanan'] = ['Makanan Berat', 'Makanan Ringan', 'Minuman'];
 
         $this->load->view('layout/header', $data);
-        $this->load->view('makanan/tambah');
+        $this->load->view('makanan/tambah', $data);
         $this->load->view('layout/footer');
     }
 
@@ -35,6 +55,8 @@ class Makanan extends CI_Controller {
         $nama       = $this->input->post('nama_makanan');
         $deskripsi  = $this->input->post('deskripsi');
         $harga      = $this->input->post('harga');
+        $kategori   = $this->input->post('kategori');
+        $jenis_makanan = $this->input->post('jenis_makanan');
         $gambar     = '';
 
         if ($_FILES['gambar']['name']) {
@@ -55,10 +77,12 @@ class Makanan extends CI_Controller {
         }
 
         $data = [
-            'nama_makanan' => $nama,
-            'deskripsi'    => $deskripsi,
-            'harga'        => $harga,
-            'gambar'       => $gambar
+            'nama_makanan'   => $nama,
+            'deskripsi'      => $deskripsi,
+            'harga'          => $harga,
+            'kategori'       => $kategori,
+            'jenis_makanan'  => $jenis_makanan,
+            'gambar'         => $gambar
         ];
 
         $this->Makanan_model->insert($data);
@@ -69,13 +93,12 @@ class Makanan extends CI_Controller {
     public function edit($id)
     {
         $makanan = $this->Makanan_model->get_by_id($id);
-
-        if (!$makanan) {
-            show_404();
-        }
+        if (!$makanan) show_404();
 
         $data['title'] = 'Edit Makanan';
         $data['makanan'] = $makanan;
+        $data['kategori'] = $this->Makanan_model->get_kategori();
+        $data['jenis_makanan'] = ['Makanan Berat', 'Makanan Ringan', 'Minuman'];
 
         $this->load->view('layout/header', $data);
         $this->load->view('makanan/edit', $data);
@@ -87,6 +110,8 @@ class Makanan extends CI_Controller {
         $nama       = $this->input->post('nama_makanan');
         $deskripsi  = $this->input->post('deskripsi');
         $harga      = $this->input->post('harga');
+        $kategori   = $this->input->post('kategori');
+        $jenis_makanan = $this->input->post('jenis_makanan');
         $gambar     = $this->input->post('gambar_lama');
 
         if ($_FILES['gambar']['name']) {
@@ -111,10 +136,12 @@ class Makanan extends CI_Controller {
         }
 
         $data = [
-            'nama_makanan' => $nama,
-            'deskripsi'    => $deskripsi,
-            'harga'        => $harga,
-            'gambar'       => $gambar
+            'nama_makanan'   => $nama,
+            'deskripsi'      => $deskripsi,
+            'harga'          => $harga,
+            'kategori'       => $kategori,
+            'jenis_makanan'  => $jenis_makanan,
+            'gambar'         => $gambar
         ];
 
         $this->Makanan_model->update($id, $data);
@@ -125,7 +152,6 @@ class Makanan extends CI_Controller {
     public function delete($id)
     {
         $makanan = $this->Makanan_model->get_by_id($id);
-
         if ($makanan && $makanan->gambar && file_exists('./uploads/' . $makanan->gambar)) {
             unlink('./uploads/' . $makanan->gambar);
         }
@@ -138,7 +164,6 @@ class Makanan extends CI_Controller {
     public function order($id)
     {
         $makanan = $this->Makanan_model->get_by_id($id);
-
         if (!$makanan) show_404();
 
         $data['title'] = 'Form Order';
