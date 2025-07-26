@@ -25,7 +25,7 @@ Project ini dikerjakan secara kolaboratif oleh 4 anggota tim sebagai tugas proye
 |--------------|-------------------------------|----------------|
 | michael      | Leader, integrasi & pengawasan| `main`         |
 | michael      | CRUD makanan & database       | `feature/crud` |
-| melkior      | Desain antarmuka (UI)         | `feature/ui`   |
+| michael      | Desain antarmuka (UI)         | `feature/ui`   |
 | pedro        | Dokumentasi & panduan sistem  | `feature/docs` |
 
 ---
